@@ -7,8 +7,11 @@ import {
   DeleteDateColumn,
   BeforeInsert,
   BeforeUpdate,
+  OneToMany,
 } from "typeorm";
 import { hashSync } from "bcryptjs";
+import { Post } from "./post.entity";
+import { Technologies } from "./technology.entity";
 
 @Entity("users")
 class User {
@@ -30,8 +33,12 @@ class User {
   @Column({ nullable: false })
   phone_number: string;
 
-  @Column({ length: 20 })
-  user_level: string;
+  @Column({
+    default: "Junior",
+    type: "enum",
+    enum: ["Junior", "Pleno", "Sênior", "Master"],
+  })
+  level: string;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -47,6 +54,12 @@ class User {
   hashPassword() {
     this.password = hashSync(this.password, 10);
   }
+
+  @OneToMany(() => Post, (posts) => posts.user)
+  post: Post[];
+
+  @OneToMany(() => Technologies, (technologies) => technologies.user)
+  technologies: Technologies[];
 }
 
 export default User;
