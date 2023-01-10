@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import AppDataSource from "../data-source";
+import User from "../entities/user.entity";
 import { appError } from "../errors/AppError";
+
 
 const verifyEmailExist = async (  
     req: Request,
@@ -10,7 +12,7 @@ const verifyEmailExist = async (
         
     const userRepository = AppDataSource.getRepository(User);
     const validationEmail = await userRepository.findOneBy({
-      email: userData.email,
+      email: req.params.email,
     });
     if (validationEmail) {
       throw new appError("Email already exist", 409);
