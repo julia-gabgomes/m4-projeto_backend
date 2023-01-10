@@ -1,7 +1,7 @@
 import { IUserRequest, IUser, IUserUpdate } from "../../interfaces/users";
 import AppDataSource from "../../data-source";
-import { User } from "../../entities/user.entity";
-import { userWithoutPasswordSerializer } from "../../serializers/user.serializer";
+import  User  from "../../entities/user.entity";
+import { userWithoutPasswordSerializer } from "../../schemas/users.serializers";
 import { AppError } from "../../errors/AppError";
 
 const updateUserService = async (userData: IUserUpdate, userId: string): Promise<IUser> => {

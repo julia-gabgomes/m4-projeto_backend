@@ -4,7 +4,6 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  DeleteDateColumn,
   BeforeInsert,
   BeforeUpdate,
 } from "typeorm";
@@ -27,11 +26,11 @@ class User {
   @Column()
   password: string;
 
-  @Column({ nullable: false })
+  @Column({ length: 20, nullable: false })
   phone_number: string;
 
-  @Column({ length: 20 })
-  user_level: string;
+  @Column({ default: "Junior", type: 'enum', enum: ["Junior", "Pleno", "Sênior", "Master"] })
+  level: string
 
   @CreateDateColumn()
   createdAt: Date;
@@ -39,8 +38,8 @@ class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @DeleteDateColumn()
-  deletedAt: Date;
+  @Column({ default: true })
+  isActive: boolean;
 
   @BeforeInsert()
   @BeforeUpdate()
