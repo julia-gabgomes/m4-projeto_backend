@@ -7,7 +7,7 @@ export interface IUser {
   user_level: string;
   createdAt: Date;
   updatedAt: Date;
-  softDeletedAt: Date;
+  isActive: Boolean;
 }
 
 export interface IUserRequest {
