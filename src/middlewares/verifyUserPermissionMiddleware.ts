@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import AppDataSource from "../data-source";
-import { appError } from "../errors/AppError";
+import { AppError } from "../errors/AppError";
 import User from "../entities/users.entity";
 
 const validationToken = async (
@@ -14,7 +14,7 @@ const validationToken = async (
     id: Number(req.params.id),
   });
   if (!findUser) {
-    throw new appError("Id não encontrado", 404);
+    throw new AppError("Id não encontrado", 404);
   }
   const findUserExist = await userRepository.findOneBy({
     id: Number(req.user.id),
@@ -23,7 +23,7 @@ const validationToken = async (
   if (findUser === findUserExist) {
     return next();
   }
-  throw new appError("Unathorized", 401);
+  throw new AppError("Unathorized", 401);
 };
 
 export default validationToken;
