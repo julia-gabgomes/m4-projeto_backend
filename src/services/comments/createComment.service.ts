@@ -1,2 +1,4 @@
-const createCommentService = async ()  =>{}
-export default createCommentService
+import { IComments } from "../../interfaces/comments.interface";
+
+const createCommentService = async (data: IComments) => {};
+export default createCommentService;

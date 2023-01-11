@@ -1,5 +1,8 @@
-
 export interface IComments {
-    id: number;
-    content: string;
+  content: string;
+}
+
+export interface ICommentsResponse {
+  id: number;
+  content: string;
 }
