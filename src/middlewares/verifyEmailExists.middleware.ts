@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import AppDataSource from "../data-source";
 import User from "../entities/users.entity";
-import { appError } from "../errors/AppError";
+import { AppError } from "../errors/AppError";
 
 const verifyEmailExist = async (
   req: Request,
@@ -13,7 +13,7 @@ const verifyEmailExist = async (
     email: req.params.email,
   });
   if (validationEmail) {
-    throw new appError("Email already exist", 409);
+    throw new AppError("Email already exist", 409);
   }
   return next();
 };
