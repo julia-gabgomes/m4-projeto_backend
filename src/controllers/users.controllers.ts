@@ -3,7 +3,7 @@ import createUserService from "../services/users/createUser.service";
 import listUserService from "../services/users/listUser.service";
 import updateUserService from "../services/users/updateUser.service";
 import deleteProductService from "../services/users/deleteUser.service";
-import  AppError  from "../errors/AppError";
+import { IUserRequest } from "../interfaces/users.interface";
 
 const createUserController = async (req: Request, res: Response) => {
     const userData: IUserRequest = req.body;
