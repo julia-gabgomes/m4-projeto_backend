@@ -1,11 +1,13 @@
 import { IUserRequest, IUser, IUserUpdate } from "../../interfaces/users";
 import AppDataSource from "../../data-source";
-import  User  from "../../entities/user.entity";
+import User from "../../entities/users.entity";
 import { userWithoutPasswordSerializer } from "../../schemas/users.serializers";
 import { AppError } from "../../errors/AppError";
 
-const updateUserService = async (userData: IUserUpdate, userId: string): Promise<IUser> => {
-  
+const updateUserService = async (
+  userData: IUserUpdate,
+  userId: string
+): Promise<IUser> => {
   if (Object.keys(userData).length === 0) {
     throw new AppError("Fields are not able to update", 401);
   }

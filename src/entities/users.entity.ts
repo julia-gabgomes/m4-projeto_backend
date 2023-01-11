@@ -6,8 +6,11 @@ import {
   UpdateDateColumn,
   BeforeInsert,
   BeforeUpdate,
+  OneToMany,
 } from "typeorm";
 import { hashSync } from "bcryptjs";
+import Technology from "./technologies.entity";
+import Post from "./posts.entity";
 
 @Entity("users")
 class User {
@@ -29,8 +32,12 @@ class User {
   @Column({ length: 20, nullable: false })
   phone_number: string;
 
-  @Column({ default: "Junior", type: 'enum', enum: ["Junior", "Pleno", "Sênior", "Master"] })
-  level: string
+  @Column({
+    default: "Junior",
+    type: "enum",
+    enum: ["Junior", "Pleno", "Sênior", "Master"],
+  })
+  level: string;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -46,6 +53,12 @@ class User {
   hashPassword() {
     this.password = hashSync(this.password, 10);
   }
+
+  @OneToMany(() => Technology, (technologies) => technologies.user)
+  technologies: Technology[];
+
+  @OneToMany(() => Post, (posts) => posts.user)
+  post: Post[];
 }
 
 export default User;
