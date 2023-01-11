@@ -1,6 +1,6 @@
 import AppDataSource from "../../data-source";
-import { User } from "../../entities/user.entity";
-import { usersWithoutPasswordSerializer } from "../../serializers/user.serializer";
+import  User  from "../../entities/user.entity";
+import { userWithoutPasswordSerializer } from "../../schemas/users.serializers"; 
 
 const listUserService = async () => {
   const userRepository = AppDataSource.getRepository(User);
@@ -8,7 +8,8 @@ const listUserService = async () => {
   const users = await userRepository.find();
 
   const updatedUsersWithoutPassword =
-    await usersWithoutPasswordSerializer.validate(users, {
+    await userWithoutPasswordSerializer.validate(users, {
+          
       stripUnknown: true,
       abortEarly: false,
     });

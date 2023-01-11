@@ -1,17 +1,20 @@
-import { IUser, IUserRequest } from "../../interfaces/users";
 import AppDataSource from "../../data-source";
-import { User } from "../../entities/user.entity";
-import { userWithoutPasswordSerializer } from "../../serializers/user.serializer";
-import { AppError } from "../../errors/AppError";
+import User from "../../entities/user.entity";
 
 const userDeleteService = async (id: string): Promise<void> => {
   const userRepository = AppDataSource.getRepository(User);
 
-  const findUser = await userRepository.findOneBy({
-    id: id,
-  });
+  const findUser = await userRepository.update(
+    {
+      id: Number(id),
+    },
+    {
+      isActive: false
+    }
+  );
 
-  await userRepository.softRemove(findUser);
+  // await userRepository.softRemove(findUser);
 };
+
 
 export default userDeleteService;

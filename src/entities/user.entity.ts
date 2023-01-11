@@ -4,7 +4,6 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  DeleteDateColumn,
   BeforeInsert,
   BeforeUpdate,
   OneToMany,
@@ -30,15 +29,11 @@ class User {
   @Column()
   password: string;
 
-  @Column({ nullable: false })
+  @Column({ length: 20, nullable: false })
   phone_number: string;
 
-  @Column({
-    default: "Junior",
-    type: "enum",
-    enum: ["Junior", "Pleno", "Sênior", "Master"],
-  })
-  level: string;
+  @Column({ default: "Junior", type: 'enum', enum: ["Junior", "Pleno", "Sênior", "Master"] })
+  level: string
 
   @CreateDateColumn()
   createdAt: Date;
@@ -46,8 +41,8 @@ class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @DeleteDateColumn()
-  deletedAt: Date;
+  @Column({ default: true })
+  isActive: boolean;
 
   @BeforeInsert()
   @BeforeUpdate()
@@ -63,3 +58,5 @@ class User {
 }
 
 export default User;
+
+
