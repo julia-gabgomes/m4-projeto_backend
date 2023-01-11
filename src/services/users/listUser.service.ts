@@ -1,5 +1,5 @@
 import AppDataSource from "../../data-source";
-import { User } from "../../entities/user.entity";
+import { User } from "../../entities/users.entity";
 import { usersWithoutPasswordSerializer } from "../../serializers/user.serializer";
 
 const listUserService = async () => {
