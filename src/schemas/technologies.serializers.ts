@@ -11,3 +11,5 @@ const technologieUpdateSerializer: SchemaOf<ITech> = yup.object().shape({
   id: yup.number().required(),
   name: yup.string().notRequired(),
 });
+
+export { technologieSerializer, technologieUpdateSerializer };
