@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { ITechResponseRequest } from "../interfaces/technologies.interface";
+import { ITechRequest } from "../interfaces/technologies.interface";
 import createTechService from "../services/technologies/createTech.service";
 import listAllTechsService from "../services/technologies/listAllTechs.service";
 
 const createTechController = async (req: Request, res: Response) => {
-  const techData: ITechResponseRequest = req.body;
+  const techData: ITechRequest = req.body;
   const createdTech = await createTechService(techData);
 
   return res.status(201).json(createdTech);

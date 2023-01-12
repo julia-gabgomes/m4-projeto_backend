@@ -1,16 +1,14 @@
-import { IUserRequest, IUserResponse } from "../../interfaces/users.interface";
+import { IUserResponse } from "./../../interfaces/users.interface";
 import AppDataSource from "../../data-source";
-import { AppError } from "../../errors/AppError";
 import User from "../../entities/users.entity";
 import { userWithoutPassSerializer } from "../../serializers/users.serializers";
 
-const createUserService = async (
-  userData: IUserRequest
-): Promise<IUserResponse> => {
+const listUserByIdService = async (id: string): Promise<IUserResponse> => {
   const userRepository = AppDataSource.getRepository(User);
 
-  const user = userRepository.create(userData);
-  await userRepository.save(user);
+  const user = await userRepository.findOneBy({
+    id: Number(id),
+  });
 
   const validatedUser = userWithoutPassSerializer.validate(user, {
     stripUnknown: true,
@@ -19,4 +17,4 @@ const createUserService = async (
   return validatedUser;
 };
 
-export default createUserService;
+export default listUserByIdService;

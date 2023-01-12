@@ -1,12 +1,12 @@
 import "dotenv/config";
 import AppDataSource from "../../data-source";
-import  User from "../../entities/users.entity";
+import User from "../../entities/users.entity";
 import { IUserLogin } from "../../interfaces/users.interface";
 import jwt from "jsonwebtoken";
 import { compare } from "bcryptjs";
 import { AppError } from "../../errors/AppError";
 
-const sessionService = async ({
+const createSessionService = async ({
   email,
   password,
 }: IUserLogin): Promise<string> => {
@@ -38,4 +38,4 @@ const sessionService = async ({
   return token;
 };
 
-export default sessionService;
+export default createSessionService;

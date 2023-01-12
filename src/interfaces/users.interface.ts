@@ -1,4 +1,12 @@
-export interface IUser {
+export interface IUserRequest {
+  name: string;
+  lastName: string;
+  email: string;
+  password: string;
+  phone_number: string;
+  level: string;
+}
+export interface IUserResponse {
   id: number;
   name: string;
   lastName: string;
@@ -8,15 +16,6 @@ export interface IUser {
   createdAt: Date;
   updatedAt: Date;
   isActive: boolean;
-}
-
-export interface IUserRequest {
-  name: string;
-  lastName: string;
-  email: string;
-  password: string;
-  phone_number: string;
-  level: string;
 }
 
 export interface IUserLogin {
@@ -35,12 +34,12 @@ export interface IUserUpdate {
   createdAt?: Date;
 }
 
-export interface IUserResponse {
-  name: string;
-  lastName: string;
-  email: string;
-  id: number;
-  phone_number: string;
-  level: string;
-  createdAt: Date;
-}
+// export interface IUserResponse {
+//   name: string;
+//   lastName: string;
+//   email: string;
+//   id: number;
+//   phone_number: string;
+//   level: string;
+//   createdAt: Date;
+// }

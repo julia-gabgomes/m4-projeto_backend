@@ -7,7 +7,7 @@ import {
   updateTechnologyController,
 } from "../controllers/technologies.controller";
 import ensureDataIsValidMiddleware from "../middlewares/ensureDataIsValid.middleware";
-import { techRequestSerializer } from "../schemas/technologies.serializers";
+import techRequestSerializer from "../serializers/technologies.serializers";
 
 const technologiesRoutes = Router();
 
