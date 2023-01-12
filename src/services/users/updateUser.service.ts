@@ -1,11 +1,13 @@
 import { IUserResponse, IUserUpdate } from "../../interfaces/users.interface";
 import AppDataSource from "../../data-source";
-import  User  from "../../entities/users.entity";
-import { userWithoutPasswordSerializerObject } from "../../schemas/users.serializers"; 
+import User from "../../entities/users.entity";
+import { userWithoutPassSerializer } from "../../serializers/users.serializers";
 import { AppError } from "../../errors/AppError";
 
-const updateUserService = async (userData: IUserUpdate, userId: string): Promise<IUserResponse> => {
-  
+const updateUserService = async (
+  userData: IUserUpdate,
+  userId: string
+): Promise<IUserResponse> => {
   if (Object.keys(userData).length === 0) {
     throw new AppError("Fields are not able to update", 401);
   }
@@ -16,18 +18,17 @@ const updateUserService = async (userData: IUserUpdate, userId: string): Promise
     id: Number(userId),
   });
 
-
-
   const updatedUser = userRepository.create({
     ...findUser,
     ...userData,
   });
-
   await userRepository.save(updatedUser);
 
-  const {password, ...userWhithoutPassoword } = updatedUser
+  const validatedUser = userWithoutPassSerializer.validate(updatedUser, {
+    stripUnknown: true,
+  });
 
-  return userWhithoutPassoword;
+  return validatedUser;
 };
 
 export default updateUserService;

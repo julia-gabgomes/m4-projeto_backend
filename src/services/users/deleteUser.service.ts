@@ -1,18 +1,19 @@
 import AppDataSource from "../../data-source";
 import User from "../../entities/users.entity";
 
-const userDeleteService = async (id: string): Promise<void> => {
+const deleteUserService = async (id: string): Promise<Object> => {
   const userRepository = AppDataSource.getRepository(User);
 
-  const findUser = await userRepository.update(
+  await userRepository.update(
     {
       id: Number(id),
     },
     {
-      isActive: false
+      isActive: false,
     }
   );
+
+  return {};
 };
 
-
-export default userDeleteService;
+export default deleteUserService;

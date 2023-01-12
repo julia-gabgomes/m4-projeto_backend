@@ -20,21 +20,22 @@ const userSerializer: SchemaOf<IUserRequest> = yup.object().shape({
   level: yup.string().required(),
 });
 
-const userWithoutPasswordSerializerObject: SchemaOf<IUserResponse> = yup
-  .object()
-  .shape({
-    name: yup.string().required(),
-    lastName: yup.string().required(),
-    email: yup.string().email().required(),
-    id: yup.number().required(),
-    phone_number: yup.string().notRequired(),
-    level: yup.string().notRequired(),
-    createdAt: yup.date().required(),
-    updatedAt: yup.date().required(),
-    isActive: yup.boolean(),
-  });
+const userWithoutPassSerializer: SchemaOf<IUserResponse> = yup.object().shape({
+  name: yup.string().required(),
+  lastName: yup.string().required(),
+  email: yup.string().email().required(),
+  id: yup.number().required(),
+  phone_number: yup.string().notRequired(),
+  level: yup.string().notRequired(),
+  createdAt: yup.date().required(),
+  updatedAt: yup.date().required(),
+  isActive: yup.boolean(),
+});
 
-  const userWithoutPasswordSerializer = yup.array(userWithoutPasswordSerializerObject)
+const usersListWithoutPassSerializer = yup.array(userWithoutPassSerializer);
 
-
-export { userSerializer, userWithoutPasswordSerializer, userWithoutPasswordSerializerObject };
+export {
+  userSerializer,
+  userWithoutPassSerializer,
+  usersListWithoutPassSerializer,
+};
