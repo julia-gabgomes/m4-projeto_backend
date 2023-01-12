@@ -4,10 +4,10 @@ export interface IUser {
   lastName: string;
   email: string;
   phone_number?: string;
-  user_level: string;
+  level: string;
   createdAt: Date;
   updatedAt: Date;
-  softDeletedAt: Date;
+  isActive: Boolean;
 }
 
 export interface IUserRequest {
