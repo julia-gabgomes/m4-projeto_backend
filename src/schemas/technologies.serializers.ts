@@ -1,11 +1,15 @@
 import * as yup from "yup";
 import { SchemaOf } from "yup";
-import { ITechResponseRequest } from "../interfaces/technologies.interface";
+import { ITech } from "../interfaces/technologies.interface";
 
-const techRequestSerializer: SchemaOf<ITechResponseRequest> = yup
-  .object()
-  .shape({
-    name: yup.string().max(50).required(),
-  });
+const technologieSerializer: SchemaOf<ITech> = yup.object().shape({
+  id: yup.number().required(),
+  name: yup.string().required(),
+});
 
-export { techRequestSerializer };
+const technologieUpdateSerializer: SchemaOf<ITech> = yup.object().shape({
+  id: yup.number().required(),
+  name: yup.string().notRequired(),
+});
+
+export { technologieSerializer, technologieUpdateSerializer };
