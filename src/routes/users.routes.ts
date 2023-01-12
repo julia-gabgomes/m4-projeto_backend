@@ -1,11 +1,15 @@
 import { Router } from "express";
-import { listUserController } from "../controllers/userController/listAllUser.controller";
-import { createUserController } from "../controllers/userController/users.controllers";
+import { createUserController, deleteUsersController, listUserByIdController, listUserController, updateUsersController } from "../controllers/users.controllers";
 import validationToken from "../middlewares/verifyAuthToken";
+import verifyEmailExist from "../middlewares/verifyEmailExists.middleware";
 
 
-const userRoutes = Router();
-userRoutes.post("", createUserController);
-userRoutes.get("", validationToken, listUserController);
+const userRouter = Router()
 
-export default userRoutes;
+userRouter.delete('', validationToken, deleteUsersController)
+userRouter.patch('', validationToken, verifyEmailExist, updateUsersController)
+userRouter.get('/:id', validationToken, listUserByIdController)
+userRouter.post('', createUserController);
+userRouter.get('', validationToken, listUserController);
+
+export default userRouter;
