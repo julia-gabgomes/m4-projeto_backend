@@ -1,2 +1,2 @@
-const updateCommentService = async ()  =>{}
-export default updateCommentService
+const updateCommentService = async (data, id) => {};
+export default updateCommentService;

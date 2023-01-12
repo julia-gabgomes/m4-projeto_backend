@@ -1,2 +1,2 @@
-const deleteCommentService = async ()  =>{}
-export default deleteCommentService
+const deleteCommentService = async (id): Promise<void> => {};
+export default deleteCommentService;
