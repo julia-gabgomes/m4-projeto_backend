@@ -1,6 +1,10 @@
-
-export interface ITech {
-    id: number;
-    name: string;
-
+interface ITechResponseRequest {
+  name: string;
 }
+
+interface ITechResponse {
+  id: number;
+  name: string;
+}
+
+export { ITechResponseRequest, ITechResponse };

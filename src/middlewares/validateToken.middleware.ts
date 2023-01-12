@@ -2,7 +2,7 @@ import "dotenv/config";
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
-const validationToken = async (
+const validateTokenMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -22,9 +22,9 @@ const validationToken = async (
         message: "invalid token",
       });
     }
-    req.user = {id: decoded.sub, isActive: decoded.isActive };
+    req.user = { id: decoded.sub, isActive: decoded.isActive };
   });
   return next();
 };
 
-export default validationToken;
+export default validateTokenMiddleware;

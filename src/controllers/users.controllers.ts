@@ -31,7 +31,6 @@ const deleteUsersController = async (req: Request, res: Response) => {
   return res.status(204).json({});
 };
 
-
 const listUserByIdController = async (req: Request, res: Response) => {
   const id = req.params.id;
   const user = await listUserByIdService(id);
