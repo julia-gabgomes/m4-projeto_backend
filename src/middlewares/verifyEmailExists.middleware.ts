@@ -10,7 +10,7 @@ const verifyEmailExist = async (
 ) => {
   const userRepository = AppDataSource.getRepository(User);
   const validationEmail = await userRepository.findOneBy({
-    email: req.params.email,
+    email: req.body.email,
   });
   if (validationEmail) {
     throw new AppError("Email already exist", 409);

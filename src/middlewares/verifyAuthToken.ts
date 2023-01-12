@@ -1,12 +1,13 @@
+import "dotenv/config";
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import "dotenv/config";
 
 const validationToken = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
+  console.log("cheguei")
   let token = req.headers.authorization;
 
   if (!token) {

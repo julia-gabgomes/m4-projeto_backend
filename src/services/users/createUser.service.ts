@@ -1,31 +1,24 @@
-import { IUserRequest } from "../../interfaces/users";
+import { IUser, IUserRequest } from "../../interfaces/users.interface";
 import AppDataSource from "../../data-source";
-import { User } from "../../entities/users.entity";
-import { userWithoutPasswordSerializer } from "../../serializers/user.serializer";
 import { AppError } from "../../errors/AppError";
+import User from "../../entities/users.entity";
 
-const createUserService = async (userData: IUserRequest) => {
+const createUserService = async (
+  userData: IUserRequest
+): Promise<Array<User | number | string | {}>> => {
   const userRepository = AppDataSource.getRepository(User);
-
-  const userAlreadyExists = await userRepository.findOneBy({
+  const validationEmail = await userRepository.findOneBy({
     email: userData.email,
   });
-
-  if (userAlreadyExists) {
-    throw new AppError("User Already Exists", 409);
+  if (validationEmail) {
+    throw new AppError("Email already exist", 409);
   }
+  const user = userRepository.create(userData);
+  await userRepository.save(user);
 
-  const newUser = userRepository.create(userData);
+  const { password, ...Newuser } = user;
 
-  const newSavedUser = await userRepository.save(newUser);
-
-  const userWithoutPassword = await userWithoutPasswordSerializer.validate(
-    newSavedUser,
-    {
-      stripUnknown: true,
-    }
-  );
-  return userWithoutPassword;
+  return [201, Newuser];
 };
 
 export default createUserService;
