@@ -4,10 +4,10 @@ export interface IUser {
   lastName: string;
   email: string;
   phone_number?: string;
-  user_level: string;
+  level: string;
   createdAt: Date;
   updatedAt: Date;
-  isActive: Boolean;
+  isActive: boolean;
 }
 
 export interface IUserRequest {
@@ -16,7 +16,7 @@ export interface IUserRequest {
   email: string;
   password: string;
   phone_number: string;
-  user_level: string;
+  level: string;
 }
 
 export interface IUserLogin {
@@ -30,8 +30,9 @@ export interface IUserUpdate {
   lastName?: string;
   password?: string;
   phone_number?: string;
-  user_level?: string;
+  level?: string;
   updatedAt?: Date;
+  createdAt?: Date;
 }
 
 export interface IUserResponse {
@@ -40,6 +41,6 @@ export interface IUserResponse {
   email: string;
   id: number;
   phone_number: string;
-  user_level: string;
+  level: string;
   createdAt: Date;
 }

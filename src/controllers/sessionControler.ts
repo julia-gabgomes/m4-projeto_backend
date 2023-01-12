@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { IUserLogin } from "../../interfaces/users.interface";
-import sessionService from "../../services/sessionService/session.service";
+import { IUserLogin } from "../interfaces/users.interface";
+import sessionService from "../services/sessionService/session.service";
 
 const sessionController = async (req: Request, res: Response) => {
   const sessionData: IUserLogin = req.body;

@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import { appError } from "./AppError";
+import { AppError } from "./AppError";
 
 const handleError = async (error: Error, req: Request, res: Response, next: NextFunction) => {
-    if(error instanceof appError){
+    if(error instanceof AppError){
         return res.status(error.statusCode).json({
             message: error.message
         })
