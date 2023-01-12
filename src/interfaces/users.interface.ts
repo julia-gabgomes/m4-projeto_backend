@@ -3,7 +3,7 @@ export interface IUser {
   name: string;
   lastName: string;
   email: string;
-  phone_number?: number;
+  phone_number?: string;
   user_level: string;
   createdAt: Date;
   updatedAt: Date;
@@ -15,7 +15,7 @@ export interface IUserRequest {
   lastName: string;
   email: string;
   password: string;
-  phone_number: number;
+  phone_number: string;
   user_level: string;
 }
 
@@ -29,7 +29,7 @@ export interface IUserUpdate {
   email?: string;
   lastName?: string;
   password?: string;
-  phone_number?: number;
+  phone_number?: string;
   user_level?: string;
   updatedAt?: Date;
 }
@@ -39,7 +39,7 @@ export interface IUserResponse {
   lastName: string;
   email: string;
   id: number;
-  phone_number: number;
+  phone_number: string;
   user_level: string;
   createdAt: Date;
 }
