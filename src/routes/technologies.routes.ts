@@ -9,18 +9,20 @@ import {
 import ensureDataIsValidMiddleware from "../middlewares/ensureDataIsValid.middleware";
 import techRequestSerializer from "../serializers/technologies.serializers";
 
+
 const technologiesRoutes = Router();
 
 technologiesRoutes.post(
   "",
+  validateTokenMiddleware,
   ensureDataIsValidMiddleware(techRequestSerializer),
   createTechController
 );
 
-technologiesRoutes.get("", listAllTechsController);
+technologiesRoutes.get("", validateTokenMiddleware, listAllTechsController);
 
-technologiesRoutes.patch("/:id", updateTechnologyController);
+technologiesRoutes.patch("/:id", validateTokenMiddleware, updateTechnologyController);
 
-technologiesRoutes.delete("/:id", deleteTechnologyController);
+technologiesRoutes.delete("/:id", validateTokenMiddleware, deleteTechnologyController);
 
 export default technologiesRoutes;
