@@ -5,7 +5,11 @@ import { usersListWithoutPassSerializer } from "../../serializers/users.serializ
 
 const listAllUsersService = async (): Promise<IUserResponse[]> => {
   const userRepository = AppDataSource.getRepository(User);
-  const users = await userRepository.find();
+  const users = await userRepository.findBy(
+    {
+      isActive: true
+    }
+  );
 
   const validatedList = await usersListWithoutPassSerializer.validate(users, {
     stripUnknown: true,

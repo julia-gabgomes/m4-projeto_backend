@@ -4,7 +4,7 @@ export interface IUserRequest {
   email: string;
   password: string;
   phone_number: string;
-  level: string;
+  level?: string;
 }
 export interface IUserResponse {
   id: number;
