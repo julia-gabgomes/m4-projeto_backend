@@ -3,12 +3,11 @@ import validateTokenMiddleware from "../middlewares/validateToken.middleware";
 import {
   createTechController,
   deleteTechnologyController,
-  listAllTechsController,
+  listUserTechsController,
   updateTechnologyController,
 } from "../controllers/technologies.controller";
 import ensureDataIsValidMiddleware from "../middlewares/ensureDataIsValid.middleware";
 import techRequestSerializer from "../serializers/technologies.serializers";
-
 
 const technologiesRoutes = Router();
 
@@ -19,10 +18,19 @@ technologiesRoutes.post(
   createTechController
 );
 
-technologiesRoutes.get("", validateTokenMiddleware, listAllTechsController);
+technologiesRoutes.get("", validateTokenMiddleware, listUserTechsController);
 
-technologiesRoutes.patch("/:id", validateTokenMiddleware, updateTechnologyController);
+technologiesRoutes.patch(
+  "/:id",
+  validateTokenMiddleware,
+  ensureDataIsValidMiddleware(techRequestSerializer),
+  updateTechnologyController
+);
 
-technologiesRoutes.delete("/:id", validateTokenMiddleware, deleteTechnologyController);
+technologiesRoutes.delete(
+  "/:id",
+  validateTokenMiddleware,
+  deleteTechnologyController
+);
 
 export default technologiesRoutes;

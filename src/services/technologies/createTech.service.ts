@@ -1,4 +1,5 @@
 import AppDataSource from "../../data-source";
+import User from "../../entities/users.entity";
 import Technology from "../../entities/technologies.entity";
 import {
   ITechRequest,
@@ -6,11 +7,17 @@ import {
 } from "../../interfaces/technologies.interface";
 
 const createTechService = async (
-  data: ITechRequest
+  data: ITechRequest,
+  userId: string
 ): Promise<ITechResponse> => {
+  const userRepository = AppDataSource.getRepository(User);
   const techRepository = AppDataSource.getRepository(Technology);
 
-  const createdTech = techRepository.create({ ...data });
+  const foundUser: User = await userRepository.findOneBy({
+    id: parseInt(userId),
+  });
+
+  const createdTech = techRepository.create({ user: foundUser, ...data });
   await techRepository.save(createdTech);
 
   return createdTech;
