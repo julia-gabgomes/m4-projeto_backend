@@ -19,6 +19,8 @@ const createSessionService = async ({
     throw new AppError("user or passord incorret", 403);
   }
 
+  console.log(user);
+
   const passowrdMath = await compare(password, user.password);
 
   if (!passowrdMath) {
@@ -34,6 +36,8 @@ const createSessionService = async ({
       expiresIn: "24h",
     }
   );
+
+  console.log(token);
 
   return token;
 };

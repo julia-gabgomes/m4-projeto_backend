@@ -1,3 +1,4 @@
+import { IUserResponse } from "./users.interface";
 interface ITechRequest {
   name: string;
 }
