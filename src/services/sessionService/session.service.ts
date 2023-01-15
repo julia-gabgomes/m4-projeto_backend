@@ -16,15 +16,17 @@ const createSessionService = async ({
     email: email,
   });
   if (!user) {
-    throw new AppError("user or passord incorret", 403);
+    throw new AppError("user or password incorret", 403);
   }
 
-  console.log(user);
+  if (!user.isActive) {
+    throw new AppError("user is already deactivated", 400);
+  }
 
-  const passowrdMath = await compare(password, user.password);
+  const passwordMatch = await compare(password, user.password);
 
-  if (!passowrdMath) {
-    throw new AppError("user or passord incorret", 403);
+  if (!passwordMatch) {
+    throw new AppError("user or password incorret", 403);
   }
   const token = jwt.sign(
     {

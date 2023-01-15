@@ -33,13 +33,3 @@ export interface IUserUpdate {
   updatedAt?: Date;
   createdAt?: Date;
 }
-
-// export interface IUserResponse {
-//   name: string;
-//   lastName: string;
-//   email: string;
-//   id: number;
-//   phone_number: string;
-//   level: string;
-//   createdAt: Date;
-// }

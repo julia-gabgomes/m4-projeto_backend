@@ -1,10 +1,6 @@
 import * as yup from "yup";
 import { SchemaOf } from "yup";
-import {
-  IUserRequest,
-  IUserResponse,
-  IUserUpdate,
-} from "../interfaces/users.interface";
+import { IUserRequest, IUserResponse } from "../interfaces/users.interface";
 
 const userSerializer: SchemaOf<IUserRequest> = yup.object().shape({
   email: yup.string().email().required(),
@@ -40,7 +36,7 @@ const userUpdateSerializer: SchemaOf<IUserRequest> = yup.object().shape({
     .matches(/(\d)/, "Deve conter ao menos um número")
     .matches(/(\W)|_/, "Deve conter um caracter especial")
     .matches(/.{8,}/, "Deve ter no minimo 8 digitos")
-    .required(),
+    .notRequired(),
   lastName: yup.string().notRequired(),
   phone_number: yup.string().notRequired(),
   level: yup.string().notRequired(),
@@ -52,5 +48,5 @@ export {
   userSerializer,
   userWithoutPassSerializer,
   usersListWithoutPassSerializer,
-  userUpdateSerializer
+  userUpdateSerializer,
 };

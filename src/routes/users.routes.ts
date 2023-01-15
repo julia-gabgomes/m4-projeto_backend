@@ -12,13 +12,26 @@ import ensureUserIdMiddleware from "../middlewares/ensureUserId.middleware";
 import ensureUserIsActive from "../middlewares/ensureUserIsActive.middleware";
 import ensureDataIsValidMiddleware from "../middlewares/ensureDataIsValid.middleware";
 
-import { userSerializer, userUpdateSerializer } from "../serializers/users.serializers";
+import {
+  userSerializer,
+  userUpdateSerializer,
+} from "../serializers/users.serializers";
 
 const userRoutes = Router();
 
-userRoutes.post("", ensureDataIsValidMiddleware(userSerializer ), verifyEmailExists, createUserController);
+userRoutes.post(
+  "",
+  ensureDataIsValidMiddleware(userSerializer),
+  verifyEmailExists,
+  createUserController
+);
 userRoutes.get("", validateTokenMiddleware, listAllUsersController);
-userRoutes.get("/:id", validateTokenMiddleware, ensureUserIdMiddleware, listUserByIdController);
+userRoutes.get(
+  "/:id",
+  validateTokenMiddleware,
+  ensureUserIdMiddleware,
+  listUserByIdController
+);
 userRoutes.patch(
   "",
   validateTokenMiddleware,
@@ -26,6 +39,11 @@ userRoutes.patch(
   ensureUserIsActive,
   updateUserController
 );
-userRoutes.delete("", validateTokenMiddleware, ensureUserIsActive, deleteUserController);
+userRoutes.delete(
+  "",
+  validateTokenMiddleware,
+  ensureUserIsActive,
+  deleteUserController
+);
 
 export default userRoutes;
