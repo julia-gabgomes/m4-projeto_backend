@@ -1,22 +1,22 @@
-// import { Request, Response } from "express";
-// import createPostService from "../services/posts/createPost.service";
-// import deletePostService from "../services/posts/deletePost.service";
-// import listAllPostsService from "../services/posts/listAllPosts.service";
-// import updatePostService from "../services/posts/updatePost.service";
-// import { IPostRequest } from "../interfaces/posts.interface";
-// import unLikePostService from "../services/posts/unLikePost.service";
-// import giveLikeForAPostService from "../services/posts/giveLikeForAPost.service";
-// import listAllCommentsFromAPostService from "../services/posts/listAllCommentsFromAPost.service";
-// import listEspecificPostService from "../services/posts/listEspecificPost.service";
+import { Request, Response } from "express";
+import createPostService from "../services/posts/createPost.service";
+import deletePostService from "../services/posts/deletePost.service";
+import listAllPostsService from "../services/posts/listAllPosts.service";
+import updatePostService from "../services/posts/updatePost.service";
+import { IPostRequest } from "../interfaces/posts.interface";
+import unLikePostService from "../services/posts/unLikePost.service";
+import giveLikeForAPostService from "../services/posts/giveLikeForAPost.service";
+import listAllCommentsFromAPostService from "../services/posts/listAllCommentsFromAPost.service";
+import listEspecificPostService from "../services/posts/listEspecificPost.service";
 
-// const createPostController = async (req: Request, res: Response) => {
-//   const postContent: IPostRequest = req.body;
-//   const newPost = await createPostService(postContent);
+const createPostController = async (req: Request, res: Response) => {
+  const postContent: IPostRequest = req.body;
+  const newPost = await createPostService(postContent);
 
-//   return res.status(201).json(newPost);
-// };
+  return res.status(201).json(newPost);
+};
 
-// //erros serão resolvidos após criaçao dos services
+//erros serão resolvidos após criaçao dos services
 // const listAllPostsController = async (req: Request, res: Response) => {
 //     const posts = await listAllPostsService();
 //     return res.status(200).json(posts);
@@ -60,7 +60,7 @@
 //     const id = req.params.id;
 //     const deletedPost = await unLikePostService(id);
 //     return res.status(204).json({});
-//   };
+  // };
 
 export {
   createPostController,
