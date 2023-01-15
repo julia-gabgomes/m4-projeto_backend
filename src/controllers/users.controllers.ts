@@ -27,6 +27,7 @@ const listUserByIdController = async (req: Request, res: Response) => {
 };
 
 const updateUserController = async (req: Request, res: Response) => {
+  console.log(req.body);
   const userData = req.body;
   const userId = req.user.id;
   const updatedUser = await updateUserService(userData, userId);
