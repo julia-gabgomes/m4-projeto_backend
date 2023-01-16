@@ -18,6 +18,15 @@ const setDataSourceConfig = (): DataSourceOptions => {
     };
   }
 
+  if (nodeEnv === "production") {
+    return {
+      type: "postgres",
+      url: process.env.DATABASE_URL,
+      entities: [entitiesPath],
+      migrations: [migrationsPath],
+    };
+  }
+
   return {
     type: "postgres",
     host: process.env.PGHOST,
