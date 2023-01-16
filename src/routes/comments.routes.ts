@@ -1,16 +1,14 @@
 import { Router } from "express";
 import {
   createCommentController,
-  deleteCommentController,
-  listAllCommentsController,
-  updateCommentController,
+  //   deleteCommentController,
+  //   updateCommentController,
 } from "../controllers/comments.controllers";
 
 const commentRouter = Router();
 
-commentRouter.get("", listAllCommentsController);
-commentRouter.post("", createCommentController);
-commentRouter.patch("", updateCommentController);
-commentRouter.delete("", deleteCommentController);
+commentRouter.post("/:id", createCommentController);
+// commentRouter.patch("", updateCommentController);
+// commentRouter.delete("", deleteCommentController);
 
 export default commentRouter;
