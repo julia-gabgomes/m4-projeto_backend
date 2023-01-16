@@ -5,9 +5,9 @@ import listAllPostsService from "../services/posts/listAllPosts.service";
 import listPostByIdService from "../services/posts/listPostById.service";
 import updatePostService from "../services/posts/updatePost.service";
 import deletePostService from "../services/posts/deletePost.service";
-import unLikePostService from "../services/posts/unLikePost.service";
-import giveLikeForAPostService from "../services/posts/giveLikeForAPost.service";
 import listAllCommentsFromAPostService from "../services/posts/listAllCommentsFromAPost.service";
+// import unLikePostService from "../services/posts/unLikePost.service";
+// import giveLikeForAPostService from "../services/posts/giveLikeForAPost.service";
 
 const createPostController = async (req: Request, res: Response) => {
   const postContent: IPostRequest = req.body;
@@ -48,11 +48,15 @@ const deletePostController = async (req: Request, res: Response) => {
   return res.sendStatus(204);
 };
 
-// const listAllCommentsFromAPostController = async (req: Request, res: Response) => {
-//     //controller esta incorreto, só fiz para fazer as rotas corretamente.
-//     const posts = await listAllCommentsFromAPostService();
-//     return res.status(200).json(posts);
-//   };
+const listAllCommentsFromAPostController = async (
+  req: Request,
+  res: Response
+) => {
+  const postId = req.params.id;
+  const posts = await listAllCommentsFromAPostService(postId);
+
+  return res.status(200).json(posts);
+};
 
 // const giveLikeForAPostController = async (req: Request, res: Response) => {
 //      //controller esta incorreto, só fiz para fazer as rotas corretamente.
@@ -74,7 +78,7 @@ export {
   listPostByIdController,
   updatePostController,
   deletePostController,
+  listAllCommentsFromAPostController,
   // unLikePostController,
   // giveLikeForAPostController,
-  // listAllCommentsFromAPostController,
 };
