@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",
     "build": "tsc",
+    "start": "node dist/src/server.js",
     "typeorm": "typeorm-ts-node-commonjs",
     "test": "cross-env NODE_ENV=test SECRET_KEY=secret_key jest --verbose --runInBand",
     "migrate": "typeorm migrations:generate -n"
@@ -36,6 +37,7 @@
     "jsonwebtoken": "8.5.1",
     "pg": "8.8.0",
     "reflect-metadata": "0.1.13",
+    "ts-node": "^10.9.1",
     "typeorm": "0.3.11",
     "yup": "0.32.11"
   }
