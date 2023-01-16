@@ -1,24 +1,40 @@
 import { Router } from "express";
+import validateTokenMiddleware from "../middlewares/validateToken.middleware";
 import {
   createPostController,
-// deletePostController,
-// giveLikeForAPostController,
-// listAllCommentsFromAPostController,
-// listAllPostsController,
-// listEspecificPostController,
-// unLikePostController,
-// updatePostController,
+  listAllPostsController,
+  listPostByIdController,
+  updatePostController,
+  deletePostController,
+  // giveLikeForAPostController,
+  // listAllCommentsFromAPostController,
+  // unLikePostController,
 } from "../controllers/posts.controllers";
-
+import ensureDataIsValidMiddleware from "../middlewares/ensureDataIsValid.middleware";
+import {
+  postSerializer,
+  postUpdateSerializer,
+} from "../serializers/posts.serializers";
 
 const postRoutes = Router();
 
-postRoutes.post("", createPostController);
-// postRoutes.get("", listAllPostsController);
-// postRoutes.get("/<id>", listEspecificPostController);
+postRoutes.post(
+  "",
+  validateTokenMiddleware,
+  ensureDataIsValidMiddleware(postSerializer),
+  createPostController
+);
+postRoutes.get("", validateTokenMiddleware, listAllPostsController);
+postRoutes.get("/:id", validateTokenMiddleware, listPostByIdController);
+postRoutes.patch(
+  "/:id",
+  validateTokenMiddleware,
+  ensureDataIsValidMiddleware(postUpdateSerializer),
+  updatePostController
+);
+postRoutes.delete("/:id", validateTokenMiddleware, deletePostController);
 // postRoutes.get("/<id>/comments", listAllCommentsFromAPostController);
 // postRoutes.post("/<id>/likes", giveLikeForAPostController);
-// postRoutes.patch("/<id>", updatePostController);
-// postRoutes.delete("/<id>", deletePostController);
 // postRoutes.delete("/<id>/likes", unLikePostController);
+
 export default postRoutes;
