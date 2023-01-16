@@ -5,7 +5,7 @@ import Post from "../../entities/posts.entity";
 const listAllPostsService = async (): Promise<IPost[]> => {
   const techRepository = AppDataSource.getRepository(Post);
 
-  const postList = techRepository.find();
+  const postList = techRepository.find({ relations: { user: true } });
 
   return postList;
 };

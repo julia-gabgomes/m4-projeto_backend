@@ -4,29 +4,32 @@ import { AppError } from "../../errors/AppError";
 import { IPost, IPostRequest } from "../../interfaces/posts.interface";
 
 const updatePostService = async (
-  postData: IPost,
-  id: number
+  postData: IPostRequest,
+  postId: string,
+  userId: string
 ): Promise<IPost> => {
   if (Object.keys(postData).length === 0) {
     throw new AppError("Fields are not able to update", 401);
   }
 
-  const PostRepository = AppDataSource.getRepository(Post);
+  const postRepository = AppDataSource.getRepository(Post);
 
-  const findPost = await PostRepository.findOneBy({
-    id: Number(id),
-  });
+  const foundPost = await postRepository
+    .createQueryBuilder("post")
+    .innerJoinAndSelect("post.user", "user")
+    .where("post.id = :id", { id: parseInt(postId) })
+    .getOne();
 
-  if (findPost == undefined) {
-    throw new AppError("Post does not exists", 400);
+  if (!foundPost) {
+    throw new AppError("Invalid post id", 404);
   }
 
-  const updatedPost = PostRepository.create({
-    ...findPost,
-    ...postData,
-  });
+  if (foundPost.user.id !== parseInt(userId)) {
+    throw new AppError("Can't update other user's post", 403);
+  }
 
-  await PostRepository.save(updatedPost);
+  const updatedPost = postRepository.create({ ...foundPost, ...postData });
+  await postRepository.save(updatedPost);
 
   return updatedPost;
 };

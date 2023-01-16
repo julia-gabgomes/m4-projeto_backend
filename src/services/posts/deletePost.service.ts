@@ -3,17 +3,31 @@ import AppDataSource from "../../data-source";
 import { AppError } from "../../errors/AppError";
 import { IPost } from "../../interfaces/posts.interface";
 
-const deletePostService = async (id: number): Promise<void> => {
-  const PostRepository = AppDataSource.getRepository(Post);
+const deletePostService = async (
+  postId: string,
+  userId: string
+): Promise<void> => {
+  const postRepository = AppDataSource.getRepository(Post);
 
-  const findPost: IPost = await PostRepository.findOneBy({
-    id: Number(id),
-  });
+  const foundPost = await postRepository
+    .createQueryBuilder("post")
+    .innerJoinAndSelect("post.user", "user")
+    .where("post.id = :id", { id: parseInt(postId) })
+    .getOne();
 
-  if (findPost == undefined) {
+  if (!foundPost) {
     throw new AppError("Post does not exists", 400);
   }
 
-  await PostRepository.delete(findPost);
+  if (foundPost.user.id !== parseInt(userId)) {
+    throw new AppError("Can't update other user's post", 403);
+  }
+
+  const postToDelete: IPost = await postRepository.findOneBy({
+    id: Number(postId),
+  });
+
+  await postRepository.delete(postToDelete.id);
 };
+
 export default deletePostService;

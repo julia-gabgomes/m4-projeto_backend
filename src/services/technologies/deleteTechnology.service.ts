@@ -4,10 +4,9 @@ import { AppError } from "../../errors/AppError";
 import { ITechResponse } from "../../interfaces/technologies.interface";
 
 const deleteTechnologyService = async (id: string): Promise<Object> => {
-  
   const TechRepository = AppDataSource.getRepository(Technology);
 
-  const findTechnology:ITechResponse = await TechRepository.findOneBy({
+  const findTechnology: ITechResponse = await TechRepository.findOneBy({
     id: Number(id),
   });
 
@@ -17,8 +16,7 @@ const deleteTechnologyService = async (id: string): Promise<Object> => {
 
   await TechRepository.delete(findTechnology);
 
-  return {}
-
+  return {};
 };
 
 export default deleteTechnologyService;

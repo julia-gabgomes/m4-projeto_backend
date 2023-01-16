@@ -31,10 +31,6 @@ const updateTechnologyService = async (
     .where("id = :id", { id: techId })
     .execute();
 
-  // const updatedTech = await techRepository.update(techId, {
-  //   name: techData.name,
-  // });
-
   return updatedTech;
 };
 

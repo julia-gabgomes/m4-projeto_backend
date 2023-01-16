@@ -3,18 +3,14 @@ import { SchemaOf } from "yup";
 import { IPostRequest } from "../interfaces/posts.interface";
 
 const postSerializer: SchemaOf<IPostRequest> = yup.object().shape({
-  id: yup.string(),
-  title: yup.string().required(),
-  content: yup.string().required(),
-  likes: yup.number().required(),
+  title: yup.string().max(120).required(),
+  content: yup.string().max(1000).required(),
   type: yup.string().required(),
 });
 
 const postUpdateSerializer: SchemaOf<IPostRequest> = yup.object().shape({
-  id: yup.string(),
-  title: yup.string().notRequired(),
-  content: yup.string().notRequired(),
-  likes: yup.number().notRequired(),
+  title: yup.string().max(120).notRequired(),
+  content: yup.string().max(1000).notRequired(),
   type: yup.string().notRequired(),
 });
 
