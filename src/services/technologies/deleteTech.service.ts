@@ -3,7 +3,7 @@ import Technology from "../../entities/technologies.entity";
 import { AppError } from "../../errors/AppError";
 import { ITechResponse } from "../../interfaces/technologies.interface";
 
-const deleteTechnologyService = async (id: string): Promise<Object> => {
+const deleteTechService = async (id: string): Promise<Object> => {
   const TechRepository = AppDataSource.getRepository(Technology);
 
   const findTechnology: ITechResponse = await TechRepository.findOneBy({
@@ -19,4 +19,4 @@ const deleteTechnologyService = async (id: string): Promise<Object> => {
   return {};
 };
 
-export default deleteTechnologyService;
+export default deleteTechService;

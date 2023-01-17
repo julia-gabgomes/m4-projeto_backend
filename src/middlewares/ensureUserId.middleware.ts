@@ -5,7 +5,7 @@ import User from "../entities/users.entity";
 const ensureUserIdMiddleware = async (req: Request, res: Response, next: NextFunction) => {
 
     if(isNaN(Number(req.params.id))){
-        return res.status(404).json({message: "invalid id"})
+        return res.status(404).json({message: "Invalid id"})
     }
 
     const userRepository = AppDataSource.getRepository(User)

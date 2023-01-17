@@ -2,35 +2,35 @@ import { Router } from "express";
 import validateTokenMiddleware from "../middlewares/validateToken.middleware";
 import {
   createTechController,
-  deleteTechnologyController,
+  deleteTechController,
   listUserTechsController,
-  updateTechnologyController,
+  updateTechController,
 } from "../controllers/technologies.controller";
 import ensureDataIsValidMiddleware from "../middlewares/ensureDataIsValid.middleware";
 import techRequestSerializer from "../serializers/technologies.serializers";
 
-const technologiesRoutes = Router();
+const techRoutes = Router();
 
-technologiesRoutes.post(
+techRoutes.post(
   "",
   validateTokenMiddleware,
   ensureDataIsValidMiddleware(techRequestSerializer),
   createTechController
 );
 
-technologiesRoutes.get("", validateTokenMiddleware, listUserTechsController);
+techRoutes.get("", validateTokenMiddleware, listUserTechsController);
 
-technologiesRoutes.patch(
+techRoutes.patch(
   "/:id",
   validateTokenMiddleware,
   ensureDataIsValidMiddleware(techRequestSerializer),
-  updateTechnologyController
+  updateTechController
 );
 
-technologiesRoutes.delete(
+techRoutes.delete(
   "/:id",
   validateTokenMiddleware,
-  deleteTechnologyController
+  deleteTechController
 );
 
-export default technologiesRoutes;
+export default techRoutes;

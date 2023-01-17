@@ -13,7 +13,7 @@ const ensureUserIsActive = async (req: Request, res: Response, next: NextFunctio
     )
 
     if(!user.isActive){
-        return res.status(400).json({message: "user is already deactivated"})
+        return res.status(400).json({message: "This user is no longer active"})
     }
 
     return next()
