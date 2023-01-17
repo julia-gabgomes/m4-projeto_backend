@@ -34,8 +34,6 @@ class User {
 
   @Column({
     default: "Junior",
-    type: "enum",
-    enum: ["Junior", "Pleno", "Sênior", "Master"],
   })
   level: string;
 
