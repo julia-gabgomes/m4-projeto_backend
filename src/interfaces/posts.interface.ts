@@ -5,7 +5,6 @@ export interface IPost {
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;
-  likes: number;
   type: string;
 }
 
