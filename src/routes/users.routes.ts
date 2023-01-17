@@ -21,7 +21,6 @@ const userRoutes = Router();
 
 userRoutes.post(
   "",
-  ensureDataIsValidMiddleware(userSerializer),
   verifyEmailExists,
   createUserController
 );
@@ -35,7 +34,6 @@ userRoutes.get(
 userRoutes.patch(
   "",
   validateTokenMiddleware,
-  ensureDataIsValidMiddleware(userUpdateSerializer),
   ensureUserIsActive,
   updateUserController
 );
