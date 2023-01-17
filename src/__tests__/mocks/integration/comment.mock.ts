@@ -2,6 +2,7 @@ import { IComments, ICommentsResponse } from "../../../interfaces/comments.inter
 
 
 
-export const mockedComment : IComments = {
+export const mockedComment : ICommentsResponse = {
+    id: 1,
     content: "Esse post me ajudou muito! Obrigado! :) ps. não me pagaram para falar isso!"
 }

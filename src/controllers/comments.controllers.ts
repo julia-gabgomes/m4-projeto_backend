@@ -7,9 +7,9 @@ import createCommentService from "../services/comments/createComment.service";
 const createCommentController = async (req: Request, res: Response) => {
   const data: IComments = req.body;
   const postId: string = req.params.id;
-  const newUser = await createCommentService(data, postId);
+  const newComment = await createCommentService(data, postId);
 
-  return res.status(201).json(newUser);
+  return res.status(201).json(newComment);
 };
 
 // const updateCommentController = async (req: Request, res: Response) => {

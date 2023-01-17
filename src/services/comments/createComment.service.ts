@@ -1,4 +1,4 @@
-import { IComments } from "../../interfaces/comments.interface";
+import { IComments, ICommentsResponse } from "../../interfaces/comments.interface";
 import AppDataSource from "../../data-source";
 import Post from "../../entities/posts.entity";
 import Comment from "../../entities/comments.entity";
@@ -6,7 +6,8 @@ import Comment from "../../entities/comments.entity";
 const createCommentService = async (
   data: IComments,
   postId: string
-): Promise<IComments> => {
+): Promise<ICommentsResponse> => {
+  console.log('aqui ' + data)
   const commentRepository = AppDataSource.getRepository(Comment);
   const postRepository = AppDataSource.getRepository(Post);
 
