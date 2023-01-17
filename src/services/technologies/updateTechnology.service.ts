@@ -25,13 +25,10 @@ const updateTechnologyService = async (
     throw new AppError("Technology does not exists", 400);
   }
 
-  const updatedTech = await AppDataSource.createQueryBuilder()
-    .update(Technology)
-    .set({ name: techData.name })
-    .where("id = :id", { id: techId })
-    .execute();
+  findTechnology[0].name = techData.name;
+  await techRepository.save(findTechnology);
 
-  return updatedTech;
+  return findTechnology[0];
 };
 
 export default updateTechnologyService;
