@@ -7,7 +7,6 @@ const createPostService = async (
   postData: IPostRequest,
   userId: string
 ): Promise<Post> => {
-  console.log(userId, "user id");
   const userRepository = AppDataSource.getRepository(User);
   const postRepository = AppDataSource.getRepository(Post);
 

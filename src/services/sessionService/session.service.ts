@@ -39,8 +39,6 @@ const createSessionService = async ({
     }
   );
 
-  console.log(token);
-
   return token;
 };
 
