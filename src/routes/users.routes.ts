@@ -34,7 +34,6 @@ userRoutes.get(
 userRoutes.patch(
   "",
   validateTokenMiddleware,
-  ensureDataIsValidMiddleware(userUpdateSerializer),
   ensureUserIsActive,
   updateUserController
 );

@@ -33,10 +33,7 @@ class User {
   phone_number: string;
 
   @Column({
-    default: "Junior",
-    type: "enum",
-    enum: ["Junior", "Pleno", "Sênior", "Master"],
-  })
+    default: "Junior"})
   level: string;
 
   @CreateDateColumn()

@@ -2,7 +2,7 @@ import { DataSource } from "typeorm";
 import AppDataSource from "../../../data-source";
 import request from "supertest"
 import app from "../../../app";
-import { mockedUser, mockedUserLogin} from "../../mocks/integration/user.mock"
+import { mockedUser1, mockedUserLogin1} from "../../mocks/integration/user.mock"
 
 
 describe("/login", () => {
@@ -15,7 +15,7 @@ describe("/login", () => {
             console.error("Erro durante a inicialização", err)
         })
 
-        await request(app).post('/users').send(mockedUserLogin)
+        await request(app).post('/users').send(mockedUser1)
     })
 
     afterAll(async() => {
@@ -23,7 +23,7 @@ describe("/login", () => {
     })
 
     test("POST /login -  você pode fazer login com sucesso",async () => {
-        const response = await request(app).post("/login").send(mockedUser);
+        const response = await request(app).post("/login").send(mockedUserLogin1);
         
         expect(response.body).toHaveProperty("token")
         expect(response.status).toBe(200)

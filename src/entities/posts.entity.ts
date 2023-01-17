@@ -33,7 +33,7 @@ class Post {
   @Column({ default: 0 })
   likes: number;
 
-  @Column({ type: "enum", enum: ["Dúvida", "Vaga", "Notícia"] })
+  @Column()
   type: string;
 
   @ManyToOne(() => User, (user) => user.post)
