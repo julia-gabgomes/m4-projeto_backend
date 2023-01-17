@@ -14,16 +14,16 @@ const validationToken = async (
     id: Number(req.params.id),
   });
   if (!findUser) {
-    throw new AppError("Id não encontrado", 404);
+    throw new AppError("Id not found", 404);
   }
-  const findUserExist = await userRepository.findOneBy({
+  const findIfUserExists = await userRepository.findOneBy({
     id: Number(req.user.id),
   });
 
-  if (findUser === findUserExist) {
+  if (findUser === findIfUserExists) {
     return next();
   }
-  throw new AppError("Unathorized", 401);
+  throw new AppError("Unauthorized", 401);
 };
 
 export default validationToken;

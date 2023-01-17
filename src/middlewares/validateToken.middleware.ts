@@ -10,7 +10,7 @@ const validateTokenMiddleware = async (
   let token = req.headers.authorization;
   if (!token) {
     return res.status(401).json({
-      message: "invalid token no passed",
+      message: "Invalid token, not able to go any further",
     });
   }
 
@@ -18,7 +18,7 @@ const validateTokenMiddleware = async (
   jwt.verify(token, process.env.SECRET_KEY, (error, decoded: any) => {
     if (error) {
       return res.status(401).json({
-        message: "invalid token",
+        message: "Invalid token",
       });
     }
     req.user = { id: decoded.sub, isActive: decoded.isActive };

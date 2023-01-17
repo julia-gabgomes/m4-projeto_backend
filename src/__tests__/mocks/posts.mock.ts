@@ -2,7 +2,7 @@ import { IPostRequest } from '../../interfaces/posts.interface'
 import { IUserLogin, IUserRequest } from '../../interfaces/users.interface'
 
 export const mockedPostRequest: IPostRequest = {
-    title: 'Tenho duvida',
+    title: 'Tenho dúvida',
     content: 'Minha duvida é ...',
     type: "Dúvida"
 }

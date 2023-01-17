@@ -6,7 +6,7 @@ import User from "../../entities/users.entity";
 import { AppError } from "../../errors/AppError";
 import { ITechRequest } from "../../interfaces/technologies.interface";
 
-const updateTechnologyService = async (
+const updateTechService = async (
   techData: ITechRequest,
   techId: string
 ) => {
@@ -31,4 +31,4 @@ const updateTechnologyService = async (
   return findTechnology[0];
 };
 
-export default updateTechnologyService;
+export default updateTechService;

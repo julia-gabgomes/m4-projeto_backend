@@ -14,7 +14,7 @@ const handleError = async (
   }
   console.log(error);
   return res.status(500).json({
-    message: "internal server Error",
+    message: "Internal server Error",
   });
 };
 

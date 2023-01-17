@@ -7,8 +7,6 @@ import {
   updatePostController,
   deletePostController,
   listAllCommentsFromAPostController,
-  // giveLikeForAPostController,
-  // unLikePostController,
 } from "../controllers/posts.controllers";
 import ensureDataIsValidMiddleware from "../middlewares/ensureDataIsValid.middleware";
 import {
@@ -34,7 +32,5 @@ postRoutes.patch(
 );
 postRoutes.delete("/:id", validateTokenMiddleware, deletePostController);
 postRoutes.get("/comments/:id", listAllCommentsFromAPostController);
-// postRoutes.post("/<id>/likes", giveLikeForAPostController);
-// postRoutes.delete("/<id>/likes", unLikePostController);
 
 export default postRoutes;

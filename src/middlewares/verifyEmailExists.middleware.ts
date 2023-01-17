@@ -15,7 +15,7 @@ const verifyEmailExists = async (
   });
 
   if (validationEmail) {
-    throw new AppError("Email already exist", 409);
+    throw new AppError("This email already exists", 409);
   }
 
   next();

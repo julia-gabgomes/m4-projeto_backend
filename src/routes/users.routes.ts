@@ -10,12 +10,7 @@ import validateTokenMiddleware from "../middlewares/validateToken.middleware";
 import verifyEmailExists from "../middlewares/verifyEmailExists.middleware";
 import ensureUserIdMiddleware from "../middlewares/ensureUserId.middleware";
 import ensureUserIsActive from "../middlewares/ensureUserIsActive.middleware";
-import ensureDataIsValidMiddleware from "../middlewares/ensureDataIsValid.middleware";
 
-import {
-  userSerializer,
-  userUpdateSerializer,
-} from "../serializers/users.serializers";
 
 const userRoutes = Router();
 

@@ -7,7 +7,7 @@ const createCommentService = async (
   data: IComments,
   postId: string
 ): Promise<ICommentsResponse> => {
-  console.log('aqui ' + data)
+
   const commentRepository = AppDataSource.getRepository(Comment);
   const postRepository = AppDataSource.getRepository(Post);
 

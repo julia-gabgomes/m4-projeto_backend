@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { ITechRequest } from "../interfaces/technologies.interface";
 import createTechService from "../services/technologies/createTech.service";
-import deleteTechnologyService from "../services/technologies/deleteTechnology.service";
+import deleteTechnologyService from "../services/technologies/deleteTech.service";
 import listUserTechsService from "../services/technologies/listAllTechs.service";
-import updateTechnologyService from "../services/technologies/updateTechnology.service";
+import updateTechnologyService from "../services/technologies/updateTech.service";
 
 const createTechController = async (req: Request, res: Response) => {
   const techData: ITechRequest = req.body;
@@ -20,7 +20,7 @@ const listUserTechsController = async (req: Request, res: Response) => {
   return res.json(techList);
 };
 
-const updateTechnologyController = async (req: Request, res: Response) => {
+const updateTechController = async (req: Request, res: Response) => {
   const techId: string = req.params.id;
   const techData = req.body;
   const updatedTech = await updateTechnologyService(techData, techId);
@@ -28,7 +28,7 @@ const updateTechnologyController = async (req: Request, res: Response) => {
   return res.status(200).json(updatedTech);
 };
 
-const deleteTechnologyController = async (req: Request, res: Response) => {
+const deleteTechController = async (req: Request, res: Response) => {
   const id = req.params.id;
   const deletedTech = await deleteTechnologyService(id);
 
@@ -38,6 +38,6 @@ const deleteTechnologyController = async (req: Request, res: Response) => {
 export {
   createTechController,
   listUserTechsController,
-  updateTechnologyController,
-  deleteTechnologyController,
+  updateTechController,
+  deleteTechController,
 };
