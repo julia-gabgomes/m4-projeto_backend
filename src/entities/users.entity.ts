@@ -29,14 +29,10 @@ class User {
   @Column()
   password: string;
 
-  @Column({ length: 20, nullable: false })
+  @Column({ length: 20, nullable: true })
   phone_number: string;
 
-  @Column({
-    default: "Junior",
-    type: "enum",
-    enum: ["Junior", "Pleno", "Sênior", "Master"],
-  })
+  @Column({ default: "Junior" })
   level: string;
 
   @CreateDateColumn()
