@@ -7,15 +7,6 @@ import { AppError } from "../../errors/AppError";
 const createUserService = async (
   userData: IUserRequest
 ): Promise<IUserResponse> => {
-  if (userData.level) {
-    if (userData.level !== "Junior" || "Pleno" || "Sênior" || "Master") {
-      throw new AppError(
-        "Level must be 'Junior', 'Pleno', 'Sênior' or 'Master'",
-        406
-      );
-    }
-  }
-
   const userRepository = AppDataSource.getRepository(User);
 
   const user = userRepository.create(userData);
