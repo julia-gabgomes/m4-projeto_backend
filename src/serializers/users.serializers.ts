@@ -2,6 +2,13 @@ import * as yup from "yup";
 import { SchemaOf } from "yup";
 import { IUserRequest, IUserResponse } from "../interfaces/users.interface";
 
+enum Level {
+  Junior,
+  Pleno,
+  Sênior,
+  Master,
+}
+
 const userSerializer: SchemaOf<IUserRequest> = yup.object().shape({
   name: yup.string().max(50).required(),
   lastName: yup.string().max(50).required(),
@@ -13,7 +20,12 @@ const userSerializer: SchemaOf<IUserRequest> = yup.object().shape({
     .matches(/.{8,}/, "Must contain at least 8 characters")
     .required("Password is required"),
   phone_number: yup.string().max(20),
-  level: yup.string().notRequired(),
+  level: yup
+    .string()
+    .oneOf(
+      Object.values(Level) as any,
+      "level must be one of the following values: Junior, Pleno, Sênior, Master"
+    ),
 });
 
 const userWithoutPassSerializer: SchemaOf<IUserResponse> = yup.object().shape({
@@ -39,7 +51,12 @@ const userUpdateSerializer: SchemaOf<IUserRequest> = yup.object().shape({
     .notRequired(),
   lastName: yup.string().notRequired(),
   phone_number: yup.string().notRequired(),
-  level: yup.string().notRequired(),
+  level: yup
+    .string()
+    .oneOf(
+      Object.values(Level) as any,
+      "level must be one of the following values: Junior, Pleno, Sênior, Master"
+    ),
 });
 
 const usersListWithoutPassSerializer = yup.array(userWithoutPassSerializer);

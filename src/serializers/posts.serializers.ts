@@ -2,16 +2,32 @@ import * as yup from "yup";
 import { SchemaOf } from "yup";
 import { IPostRequest } from "../interfaces/posts.interface";
 
+enum Type {
+  Vaga,
+  Notícia,
+  Dúvida,
+}
+
 const postSerializer: SchemaOf<IPostRequest> = yup.object().shape({
   title: yup.string().max(120).required(),
   content: yup.string().max(1000).required(),
-  type: yup.string().required(),
+  type: yup
+    .string()
+    .oneOf(
+      Object.values(Type) as any,
+      "type must be one of the following values: Vaga, Notícia, Dúvida"
+    ),
 });
 
 const postUpdateSerializer: SchemaOf<IPostRequest> = yup.object().shape({
   title: yup.string().max(120).notRequired(),
   content: yup.string().max(1000).notRequired(),
-  type: yup.string().notRequired(),
+  type: yup
+    .string()
+    .oneOf(
+      Object.values(Type) as any,
+      "type must be one of the following values: Vaga, Notícia, Dúvida"
+    ),
 });
 
 const postResponseSerializer = yup.object().shape({
