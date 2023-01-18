@@ -55,7 +55,9 @@ describe("/technologies", () => {
     const response = await request(app).post(baseUrl).send(mockedTechRequest);
 
     expect(response.status).toBe(401);
-    expect(response.body).toEqual({ message: "invalid token no passed" });
+    expect(response.body).toEqual({
+      message: "Invalid token, not able to go any further",
+    });
   });
 
   it("GET /technologies - Deve ser possível listar todas as tecnologias do usuário", async () => {
@@ -76,7 +78,9 @@ describe("/technologies", () => {
     const response = await request(app).get(baseUrl).send(mockedTechRequest);
 
     expect(response.status).toBe(401);
-    expect(response.body).toEqual({ message: "invalid token no passed" });
+    expect(response.body).toEqual({
+      message: "Invalid token, not able to go any further",
+    });
   });
 
   it("PATCH /technologies/</id> - Deve ser possível atualizar uma tecnologia", async () => {
@@ -102,7 +106,9 @@ describe("/technologies", () => {
       .send(mockedTechRequest);
 
     expect(response.status).toBe(401);
-    expect(response.body).toEqual({ message: "invalid token no passed" });
+    expect(response.body).toEqual({
+      message: "Invalid token, not able to go any further",
+    });
   });
 
   it("DELETE /technologies/</id> - Deve ser possível deletar uma tecnologia", async () => {
@@ -125,6 +131,8 @@ describe("/technologies", () => {
       .send(mockedTechRequest);
 
     expect(response.status).toBe(401);
-    expect(response.body).toEqual({ message: "invalid token no passed" });
+    expect(response.body).toEqual({
+      message: "Invalid token, not able to go any further",
+    });
   });
 });
