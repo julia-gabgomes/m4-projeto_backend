@@ -35,6 +35,7 @@ userRoutes.patch(
   "",
   validateTokenMiddleware,
   ensureDataIsValidMiddleware(userUpdateSerializer),
+  verifyEmailExists,
   ensureUserIsActive,
   updateUserController
 );
