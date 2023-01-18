@@ -1,22 +1,21 @@
-export interface IUser {
-  id: number;
-  name: string;
-  lastName: string;
-  email: string;
-  phone_number?: number;
-  user_level: string;
-  createdAt: Date;
-  updatedAt: Date;
-  isActive: Boolean;
-}
-
 export interface IUserRequest {
   name: string;
   lastName: string;
   email: string;
   password: string;
-  phone_number: number;
-  user_level: string;
+  phone_number: string;
+  level?: string;
+}
+export interface IUserResponse {
+  id: number;
+  name: string;
+  lastName: string;
+  email: string;
+  phone_number?: string;
+  level: string;
+  createdAt: Date;
+  updatedAt: Date;
+  isActive: boolean;
 }
 
 export interface IUserLogin {
@@ -29,17 +28,8 @@ export interface IUserUpdate {
   email?: string;
   lastName?: string;
   password?: string;
-  phone_number?: number;
-  user_level?: string;
+  phone_number?: string;
+  level?: string;
   updatedAt?: Date;
-}
-
-export interface IUserResponse {
-  name: string;
-  lastName: string;
-  email: string;
-  id: number;
-  phone_number: number;
-  user_level: string;
-  createdAt: Date;
+  createdAt?: Date;
 }

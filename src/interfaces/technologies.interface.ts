@@ -1,4 +1,5 @@
-interface ITechResponseRequest {
+import { IUserResponse } from "./users.interface";
+interface ITechRequest {
   name: string;
 }
 
@@ -7,4 +8,4 @@ interface ITechResponse {
   name: string;
 }
 
-export { ITechResponseRequest, ITechResponse };
+export { ITechRequest, ITechResponse };

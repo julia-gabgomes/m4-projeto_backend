@@ -1,13 +1,15 @@
 import AppDataSource from "../../data-source";
-import Technology from "../../entities/technologies.entity";
+import User from "../../entities/users.entity";
 import { ITechResponse } from "../../interfaces/technologies.interface";
 
-const listAllTechsService = async (): Promise<ITechResponse[]> => {
-  const techRepository = AppDataSource.getRepository(Technology);
+const listUserTechsService = async (userId: string): Promise<ITechResponse> => {
+  const foundUserTechs = await AppDataSource.getRepository(User)
+    .createQueryBuilder("user")
+    .innerJoinAndSelect("user.technologies", "technologies")
+    .where("user.id = :id", { id: userId })
+    .getOne();
 
-  const techList = techRepository.find();
-
-  return techList;
+  return foundUserTechs;
 };
 
-export default listAllTechsService;
+export default listUserTechsService;
