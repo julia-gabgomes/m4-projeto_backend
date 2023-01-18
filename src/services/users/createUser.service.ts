@@ -8,11 +8,12 @@ const createUserService = async (
   userData: IUserRequest
 ): Promise<IUserResponse> => {
   if (userData.level) {
-    if (userData.level !== "Júnior" || "Pleno" || "Sênior" || "Master")
+    if (userData.level !== "Junior" || "Pleno" || "Sênior" || "Master") {
       throw new AppError(
         "Level must be 'Junior', 'Pleno', 'Sênior' or 'Master'",
         406
       );
+    }
   }
 
   const userRepository = AppDataSource.getRepository(User);
