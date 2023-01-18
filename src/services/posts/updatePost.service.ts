@@ -2,6 +2,7 @@ import AppDataSource from "../../data-source";
 import Post from "../../entities/posts.entity";
 import { AppError } from "../../errors/AppError";
 import { IPost, IPostRequest } from "../../interfaces/posts.interface";
+import { postResponseSerializer } from "../../serializers/posts.serializers";
 
 const updatePostService = async (
   postData: IPostRequest,
@@ -31,6 +32,10 @@ const updatePostService = async (
   const updatedPost = postRepository.create({ ...foundPost, ...postData });
   await postRepository.save(updatedPost);
 
-  return updatedPost;
+  const validatedPost = await postResponseSerializer.validate(foundPost, {
+    stripUnknown: true,
+  });
+
+  return validatedPost;
 };
 export default updatePostService;
