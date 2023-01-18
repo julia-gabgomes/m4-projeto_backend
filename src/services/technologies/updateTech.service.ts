@@ -5,11 +5,9 @@ import Technology from "../../entities/technologies.entity";
 import User from "../../entities/users.entity";
 import { AppError } from "../../errors/AppError";
 import { ITechRequest } from "../../interfaces/technologies.interface";
+import { techResponseSerializer } from "../../serializers/technologies.serializers";
 
-const updateTechService = async (
-  techData: ITechRequest,
-  techId: string
-) => {
+const updateTechService = async (techData: ITechRequest, techId: string) => {
   if (Object.keys(techData).length === 0) {
     throw new AppError("Fields are not able to update", 401);
   }
@@ -28,7 +26,14 @@ const updateTechService = async (
   findTechnology[0].name = techData.name;
   await techRepository.save(findTechnology);
 
-  return findTechnology[0];
+  const validatedTech = await techResponseSerializer.validate(
+    findTechnology[0],
+    {
+      stripUnknown: true,
+    }
+  );
+
+  return validatedTech;
 };
 
 export default updateTechService;
