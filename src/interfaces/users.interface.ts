@@ -3,7 +3,7 @@ export interface IUserRequest {
   lastName: string;
   email: string;
   password: string;
-  phone_number: string;
+  phone_number?: string;
   level?: string;
 }
 export interface IUserResponse {

@@ -5,6 +5,7 @@ import {
   ITechRequest,
   ITechResponse,
 } from "../../interfaces/technologies.interface";
+import { techResponseSerializer } from "../../serializers/technologies.serializers";
 
 const createTechService = async (
   data: ITechRequest,
@@ -20,7 +21,11 @@ const createTechService = async (
   const createdTech = techRepository.create({ user: foundUser, ...data });
   await techRepository.save(createdTech);
 
-  return createdTech;
+  const validatedTech = await techResponseSerializer.validate(createdTech, {
+    stripUnknown: true,
+  });
+
+  return validatedTech;
 };
 
 export default createTechService;
