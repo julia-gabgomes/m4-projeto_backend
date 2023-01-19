@@ -14,6 +14,16 @@ const updateUserService = async (
 
   const userRepository = AppDataSource.getRepository(User);
 
+  if (userData.email) {
+    const validationEmail = await userRepository.findOneBy({
+      email: userData.email,
+    });
+
+    if (validationEmail) {
+      throw new AppError("This email already exists", 409);
+    }
+  }
+
   const findUser = await userRepository.findOneBy({
     id: Number(userId),
   });
